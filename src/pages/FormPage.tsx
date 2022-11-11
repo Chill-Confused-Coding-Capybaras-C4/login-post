@@ -14,7 +14,7 @@ export const FormPage = () => {
     }
 
     const handleOnSubmit = async (e: any) => {
-     
+        e.preventDefault();
         const req = {
             firstName: e.target.fName.value,
             lastName: e.target.lName.value,
