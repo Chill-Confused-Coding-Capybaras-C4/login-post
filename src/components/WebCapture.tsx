@@ -1,17 +1,21 @@
 import { useCallback, useRef } from "react";
 import Webcam from "react-webcam";
+import Button from 'react-bootstrap/Button';
 
 const videoConstraints = {
-    width: 1280,
-    height: 720,
+    width: 480,
+    height: 480,
     facingMode: "user"
   };
   
+  let imageSrc;
+
   export const WebCapture = () => {
     const webcamRef: any = useRef(null);
     const capture = useCallback(
       () => {
-        const imageSrc = webcamRef.current.getScreenshot();
+        console.log('Here');
+        imageSrc = webcamRef.current.getScreenshot();
         
       },
       [webcamRef]
@@ -20,13 +24,17 @@ const videoConstraints = {
       <>
         <Webcam
           audio={false}
-          height={720}
+          height={200}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          width={1280}
+          width={200}
           videoConstraints={videoConstraints}
         />
-        <button onClick={capture}>Capture photo</button>
+        <br/>
+        <Button onClick={capture}>Capture photo</Button>
       </>
+      
     );
   };
+
+  export default imageSrc;

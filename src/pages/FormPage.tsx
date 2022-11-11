@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { WebCapture } from '../components/WebCapture';
+import imageSrc, { WebCapture } from '../components/WebCapture';
+import Clock from 'react-live-clock';
+
 
 export const FormPage = () => {
 
@@ -20,6 +22,7 @@ export const FormPage = () => {
             lastName: e.target.lName.value,
             tcsid: e.target.tcsid.value,
             email: e.target.email.value,
+            // image:  
         }
 
         const result = await axios.post("https://c4-back.azurewebsites.net/form", req, {
@@ -32,10 +35,8 @@ export const FormPage = () => {
 
     return (
         <div>
-
+            {/* <div className='center'><Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'}/></div> */}
             <Form onSubmit={handleOnSubmit} className='form'>
-                {/* <WebCapture/> */}
-
                 <h2 className="title">Welcome to TCS, {name} </h2>
 
                 <Form.Group className="mb-3" controlId="floatingInput">
@@ -66,7 +67,7 @@ export const FormPage = () => {
                     <Button variant="primary" type="submit" size="lg">Submit</Button>
                 </div>
             </Form >
-
+            <div className='left'><Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'}/></div>
         </div>
 
     );

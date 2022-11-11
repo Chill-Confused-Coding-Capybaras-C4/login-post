@@ -7,6 +7,19 @@ h2.title {
   font-weight: 600;
 }
 
+div.center {
+  margin-top: 1%;
+  margin-bottom: 0.5%;
+  text-align: center;
+  font-size: 4em;
+}
+
+div.left {
+  margin-left: 2%;
+  text-align: left;
+  font-size: large;
+}
+
 .form {
   width: 1000px;
   margin: auto;
