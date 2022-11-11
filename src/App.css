@@ -2,11 +2,17 @@
   text-align: center;
 }
 
+h2.title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
 
 .form {
   width: 1000px;
   margin: auto;
   padding: 80px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 
