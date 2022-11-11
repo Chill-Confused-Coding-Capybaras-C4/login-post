@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { WebCapture } from '../components/WebCapture';
 
 export const FormPage = () => {
 
@@ -10,32 +12,51 @@ export const FormPage = () => {
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     }
+
+    const handleOnSubmit = async (e: any) => {
+     
+        const req = {
+            firstName: e.target.fName.value,
+            lastName: e.target.lName.value,
+            tcsid: e.target.tcsid.value,
+            email: e.target.email.value,
+        }
+
+        const result = await axios.post("https://c4-back.azurewebsites.net/form", req, {
+            headers: {'key': 'c4forever!'}
+        });
+        console.log(result);
+
+        e.target.reset();
+    }
+
     return (
         <div>
 
-            <Form className='form'>
+            <Form onSubmit={handleOnSubmit} className='form'>
+                {/* <WebCapture/> */}
 
                 <h2 className="title">Welcome to TCS, {name} </h2>
-          
+
                 <Form.Group className="mb-3" controlId="floatingInput">
                     <Form.Label>First Name</Form.Label>
-                    <Form.Control onChange={handleOnChange} type="text" placeholder="Enter First Name" />
+                    <Form.Control name='fName' onChange={handleOnChange} type="text" placeholder="Enter First Name" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="floatingInput ">
                     <Form.Label>Last Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Last Name" />
+                    <Form.Control name='lName' type="text" placeholder="Enter Last Name" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="floatingInput">
                     <Form.Label>TCS ID</Form.Label>
-                    <Form.Control type="number" placeholder="TCS ID Number" />
+                    <Form.Control name='tcsid' type="number" placeholder="TCS ID Number" />
                 </Form.Group>
 
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control name='email' type="email" placeholder="Enter email" />
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                     </Form.Text>
@@ -44,7 +65,7 @@ export const FormPage = () => {
                 <div className="d-grid gap-2">
                     <Button variant="primary" type="submit" size="lg">Submit</Button>
                 </div>
-            </Form>
+            </Form >
 
         </div>
 

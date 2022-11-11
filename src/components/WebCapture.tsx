@@ -1,18 +1,32 @@
-const videoConstraints = {
-  width: 1280,
-  height: 720,
-  facingMode: "user"
-};
-
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import Webcam from "react-webcam";
 
-export const WebCamDisplay = () => {
-  const webcam = useRef<Webcam>(null);
-
-  return (
-    <>
-      <Webcam audio={false} ref={webcam} />
-    </>
-  );
-};
+const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: "user"
+  };
+  
+  export const WebCapture = () => {
+    const webcamRef: any = useRef(null);
+    const capture = useCallback(
+      () => {
+        const imageSrc = webcamRef.current.getScreenshot();
+        
+      },
+      [webcamRef]
+    );
+    return (
+      <>
+        <Webcam
+          audio={false}
+          height={720}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          width={1280}
+          videoConstraints={videoConstraints}
+        />
+        <button onClick={capture}>Capture photo</button>
+      </>
+    );
+  };
