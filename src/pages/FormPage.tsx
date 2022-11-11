@@ -4,9 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import imageSrc, { WebCapture } from '../components/WebCapture';
 import Clock from 'react-live-clock';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const FormPage = () => {
+
+    const notify = () => toast("Form submitted!");
 
     const [name, setName] = useState('');
 
@@ -31,6 +34,8 @@ export const FormPage = () => {
         console.log(result);
 
         e.target.reset();
+
+        notify();
     }
 
     return (
@@ -68,6 +73,7 @@ export const FormPage = () => {
                 </div>
             </Form >
             <div className='left'><Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'}/></div>
+            <ToastContainer/>
         </div>
 
     );
